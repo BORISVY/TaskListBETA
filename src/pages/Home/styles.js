@@ -66,4 +66,8 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
     },
 
+    dateComponent:{
+        width: 350, 
+    },
+
 })
