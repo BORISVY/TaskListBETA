@@ -10,7 +10,7 @@ export const stylesTask = StyleSheet.create({
         marginBottom: 4,
         fontSize: 18,
         fontWeight: "bold",
-        color: "#eee",
+        color: "#000",
     },
 
     taskDescription:{
@@ -20,7 +20,7 @@ export const stylesTask = StyleSheet.create({
         marginBottom: 4,
         fontSize: 15,
         fontWeight: "bold",
-        color: "#eee",
+        color: "#000",
     },
 
     taskContainer:{
@@ -34,4 +34,5 @@ export const stylesTask = StyleSheet.create({
         borderRadius: 5,
         justifyContent: "space-between",
     },
+
 })

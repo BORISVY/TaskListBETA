@@ -1,24 +1,36 @@
 import React from 'react';
-
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import {stylesTask} from "./styles.js";
-import DeleteButton from '../button/index.js';
+import DeleteButton from "../deleteButton/index.js";
 
+const [status, setStatus] = useState(false);
 
-export default function Task ({task, handleDeleteTask}){
+const alert = (task) => {
+    Alert.alert(task.title, task.description, [
+        {
+            text: "CANCELAR"
+        },
+        {
+            text: "CONCLUIR",
+            onPress: () => setStatus = true,
+        }
+    ])
+};
 
-    
+export default function Task ({task}){
 
     return(
-        
-        <View style={stylesTask.taskContainer}>
-            <Text style={stylesTask.taskTitle}>
-                Título: {task.title}
-            </Text>
-            <Text style={stylesTask.taskDescription}>
-                Descrição: {task.description}
-            </Text>
-            <DeleteButton onClick={() => handleDeleteTask(task.id)}/>
-        </View>
+        <TouchableOpacity
+        onPress={alert}>
+            <View style={stylesTask.taskContainer}>
+                <Text style={stylesTask.taskTitle}>
+                    Título: {task.title}
+                </Text>
+                <Text style={stylesTask.taskDescription}>
+                    Descrição: {task.description}
+                </Text>
+                <DeleteButton/>
+            </View>
+        </TouchableOpacity>
     )
 };

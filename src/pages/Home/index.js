@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import { View, Text, TextInput, Image, Button, FlatList} from "react-native";
+import { View, Text, TextInput, Image, Button, FlatList, Alert} from "react-native";
 import lupa from "../../../assets/lupa.png";
 import Task from "../../components/task/index.js";
 import {styles} from "./styles";
@@ -14,32 +14,30 @@ const defaultTask = {
     completed: false,
 };
 
-
 export default function Home (){
     
     const [taskList, setTaskList] = useState([]);
     const [inputData, setInputData] = useState(defaultTask);
-    const [date, setDate] = useState('');
+    const [position, setPosition] = useState(0);
     
     function handleConfirmeNewTask() {
         handleNewTask(inputData);
         setInputData(defaultTask);
     };
+
     console.log(taskList)
-    console.log(inputData)
+    console.log(position)
+
     function handleNewTask(task) {
+
+        
         let List = taskList;
         List.push(task);
-        task.id++;
         setTaskList(List);
-        
+        task.id = position;
+        task.completed = status;
+    
     };
-
-    function handleDeleteTask(taskID){
-        const List = taskList.filter(task => (task.index != taskID))
-        setTaskList(List)
-    };
-
 
     return <>
 
@@ -69,11 +67,11 @@ export default function Home (){
                             style={styles.createTaskInput}
                             placeholder="Título"
                             value={inputData.title}
+                            onTouchStart={() => setPosition(position + 1)}
                             onChangeText={(e) =>
                             setInputData((prevState) => ({   
                             ...prevState,
                             title: e,
-                            id: Math.random(10)
                             }))}>
                         </TextInput>
 
@@ -90,15 +88,13 @@ export default function Home (){
 
                         <Button
                             key={taskList.id}
-                            
                             title="Nova tarefa"
                             onPress={handleConfirmeNewTask}>
                         </Button>  
-
                         <FlatList
                             data={taskList}
                             keyExtractor={(item) => item.id}
-                            renderItem={({item}) => <Task task={item} handleDeleteTask={handleDeleteTask}/>}>
+                            renderItem={({item}) => <Task task={item}/>}>
                         </FlatList>
                     </View>
                     <View>
