@@ -101,6 +101,12 @@ export default function Home (){
                     </View>
                 </View>
             </View>
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'flex-end'}}>
+                <Button
+                    title="New Task"
+                    onPress={() => navigation.navigate('Nova Tarefa')}/>
+                
+            </View>
         </View>
     
     </>
